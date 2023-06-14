@@ -19,16 +19,14 @@ const port = 3000;
 
 app.use(express.urlencoded({ extended: true }));
 
-// GET route to serve the HTML file
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
-// POST route to handle login form submission
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
-  // SQL query to check the validity of the username and password
+
   const query = `SELECT username FROM users WHERE username = '${username}' AND password = '${password}'`;
 
   db.get(query, (err, row) => {
